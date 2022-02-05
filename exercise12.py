@@ -1,6 +1,6 @@
 # Exercise 12
 from urllib.request import Request, urlopen
-
+# Getting the latest round
 req = Request('https://drand.cloudflare.com/public/latest', headers={
 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20130401 \
 Firefox/31.0'})
@@ -9,7 +9,7 @@ a=str(data).split(",")
 a=a[0].split(":")
 round=a[1]
 print("Latest round: ", round)
-
+# Getting the last 100 randomness values
 randomness=[]
 for i in range(100):
     req = Request('https://drand.cloudflare.com/public/'+str(int(round)-i), \
@@ -18,9 +18,11 @@ for i in range(100):
     data = urlopen(req).read()
     b=str(data).split('"')
     randomness.append(b[5])
+# Combining randomness values to one sequence
 seq=""
 for i in range(len(randomness)):
     seq+=bin(int(randomness[i], 16))[2:]
+# Finding the longest sequences of 1's and 0's
 c=list(seq)
 last_digit=c[0]
 if(last_digit=='1'):
