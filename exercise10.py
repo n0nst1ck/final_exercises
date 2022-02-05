@@ -1,6 +1,5 @@
 # Exercise 10
 import re
-
 # Get the text and split it to characters.
 name=input("Insert the file name of the ascii text file:")
 f=open(name)
@@ -25,10 +24,7 @@ seq=re.findall('.{1,16}', seq)
 if(len(seq[-1])<16):
     seq.pop(-1)
 # Count
-count_even=0
-count_three=0
-count_five=0
-count_seven=0
+count_even=0; count_three=0; count_five=0; count_seven=0
 for i in range(len(seq)):
     if(int(seq[i])%2==0):
         count_even+=1
